@@ -68,10 +68,18 @@ class KDtree():
             dict_repr = _to_dict(self.root)
         return json.dumps(dict_repr,indent=2)
 
+    def split(self, node: NodeLeaf, parent):
+        return
+
     # Insert the Datum with the given code and coords into the tree.
     # The Datum with the given coords is guaranteed to not be in the tree.
     def insert(self,point:tuple[int],code:str):
-        thisisaplaceholder = True
+        if not self.root:
+            self.root = NodeLeaf([Datum(point, code)])
+        elif type(self.root) == Datum:
+            self.root.data.append(Datum(point, code))
+            if len(self.root.data) > self.m:
+                return
 
     # Delete the Datum with the given point from the tree.
     # The Datum with the given point is guaranteed to be in the tree.
